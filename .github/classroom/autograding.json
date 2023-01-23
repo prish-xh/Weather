@@ -1,0 +1,174 @@
+{
+  "tests": [
+    {
+      "name": "Test Cases Not Changed ",
+      "setup": "git fetch --unshallow --update-head-ok origin '+refs/heads/*:refs/heads/*'",
+      "run": "[ -z \"$(git log feedback..main ./test/*)\" ]",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 0
+    },
+    {
+      "name": "Activity 1 getConciseForecast",
+      "setup": "",
+      "run": "gradle test --tests Activity1Test.testGetConciseForecast1of3 --tests Activity1Test.testGetConciseForecast2of3 --tests Activity1Test.testGetConciseForecast3of3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 1 getTempF",
+      "setup": "",
+      "run": "gradle test --tests Activity1Test.testGetTempF1of2 --tests Activity1Test.testGetTempF2of2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 2 Observation_ctor",
+      "setup": "",
+      "run": "gradle test --tests Activity2Test.testConstructor1of4 --tests Activity2Test.testConstructor2of4 --tests Activity2Test.testConstructor3of4 --tests Activity2Test.testConstructor4of4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 2 Accessor Methods",
+      "setup": "",
+      "run": "gradle test --tests Activity2Test.testColderThan1of2 --tests Activity2Test.testColderThan2of2 --tests Activity2Test.testGetTemp1of2 --tests Activity2Test.testGetTemp2of2 --tests testGetIconURL1of2 --tests testGetWindDir2of2 --tests testGetHumidity2of2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 2 toString",
+      "setup": "",
+      "run": "gradle test --tests Activity2Test.testToString1of2 --tests Activity2Test.testToString2of2 ",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 2 getBeaufortNumber",
+      "setup": "",
+      "run": "gradle test --tests Activity2Test.testGetBeaufortNumber1of3 --tests Activity2Test.testGetBeaufortNumber2of3 --tests Activity2Test.testGetBeaufortNumber3of3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 2 getWindConditions",
+      "setup": "",
+      "run": "gradle test --tests Activity2Test.testGetWindConditions1of4 --tests Activity2Test.testGetWindConditions2of4 --tests Activity2Test.testGetWindConditions3of4 --tests Activity2Test.testGetWindConditions4of4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 2 getObservation",
+      "setup": "",
+      "run": "gradle test --tests Activity2Test.testgetObservation1of3 --tests Activity2Test.testgetObservation2of3 --tests Activity2Test.testgetObservation3of3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 3 WeatherStation_ctor and accessors ",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testWeatherStation1of4 --tests Activity3Test.testWeatherStation2of4 --tests Activity3Test.testWeatherStation3of4 --tests Activity3Test.testWeatherStation4of4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 3 getCurrentWeather",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testGetCurrentWeather",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 3 getAllStationsArray",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testGetAllStationsArray1of4 --tests Activity3Test.testGetAllStationsArray2of4 --tests Activity3Test.testGetAllStationsArray3of4 --tests Activity3Test.testGetAllStationsArray4of4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 3 getAllStationsList",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testGetAllStationsList1of4 --tests Activity3Test.testGetAllStationsList2of4 --tests Activity3Test.testGetAllStationsList3of4 --tests Activity3Test.testGetAllStationsList4of4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 3 getStationsInState",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testGetStationsInState1of3 --tests Activity3Test.testGetStationsInState2of3 --tests Activity3Test.testGetStationsInState3of3 --tests testGetStatesWithStations",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+    {
+      "name": "Activity 3 getColdestInState",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testGetColdestInState",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Activity 3 insertionSort",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testInsertionSort",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+    {
+      "name": "Activity 3 getStationsInStateSortedByName",
+      "setup": "",
+      "run": "gradle test --tests Activity3Test.testGetStationsInStateSortedByName1of2 --tests Activity3Test.testGetStationsInStateSortedByName2of2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    }
+  ]
+}
