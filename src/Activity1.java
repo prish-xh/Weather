@@ -7,9 +7,14 @@ import javax.net.ssl.X509TrustManager;
 
 public class Activity1 {
 	public static void main(String[] args) {
+		avoidSSLError();
 		String stationID = "KSEA"; // Sea-Tac Airport
-		System.out.println("The temperature at KSEA is " + getTempF(stationID) + "F");
 		System.out.println(getConciseForecast(stationID));
+		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/KSEA.xml");
+		ds.load();
+		double temp = ds.fetchFloat("temp_f");
+		String loc = ds.fetchString("location");
+		System.out.println("The temperature at " + loc + " is " + temp + "F");
 	}
 
 	/**
