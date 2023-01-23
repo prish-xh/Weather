@@ -11,6 +11,7 @@ public class Activity1 {
 		String stationID = "KSEA"; // Sea-Tac Airport
 		System.out.println(getConciseForecast(stationID));
 		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/KSEA.xml");
+		ds.setCacheTimeout(15 * 60);
 		ds.load();
 		double temp = ds.fetchFloat("temp_f");
 		String loc = ds.fetchString("location");
@@ -31,7 +32,12 @@ public class Activity1 {
 	 * @return a concise forecast 
 	 */
 	public static String getConciseForecast(String id) {
-		return null;
+		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/KSEA.xml");
+		ds.setCacheTimeout(15 * 60);
+		ds.load();
+		double temp = ds.fetchFloat("temp_f");
+		String loc = ds.fetchString("location");
+		return ("The temperature at <loc> is <temp>F");
 	}
 
 	/**
