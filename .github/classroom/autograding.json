@@ -133,7 +133,7 @@
     {
       "name": "Activity 3 getStationsInState",
       "setup": "",
-      "run": "gradle test --tests Activity3Test.testGetStationsInState1of3 --tests Activity3Test.testGetStationsInState2of3 --tests Activity3Test.testGetStationsInState3of3 --tests testGetStatesWithStations",
+      "run": "gradle test --tests Activity3Test.testGetStationsInState1of3 --tests Activity3Test.testGetStationsInState2of3 --tests Activity3Test.testGetStationsInState3of3 --tests Activity3Test.testGetStatesWithStations",
       "input": "",
       "output": "",
       "comparison": "included",
