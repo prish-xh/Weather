@@ -1,7 +1,24 @@
-
+import core.data.*;
 public class Observation implements Comparable{
-	//instance data
-	private int temp;
+	
+	private String id;
+	private String description;
+	private double temp;
+	private int windDir;
+	private double windSpeed;
+	private double pressure;
+	private int humidity;
+	
+	
+	public static void main(String[] args) {
+		Activity1.avoidSSLError();
+		String id = "KSEA";
+		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/" + id + ".xml"); 
+		ds.setCacheTimeout(15);  
+		ds.load();
+		ds.printUsageString();
+
+	}
 	
 	/**
 	 * Constructs an Observation object with the specified parameters.
@@ -15,7 +32,13 @@ public class Observation implements Comparable{
 	 * @param humidity relative humidity
 	 */
 	public Observation(String id, String description, double temp, int windDir, double windSpeed, double pressure, int humidity) {
-
+		this.id = id;
+		this.description = description;
+		this.temp = temp;
+		this.windDir = windDir;
+		this.windSpeed = windSpeed;
+		this.pressure = pressure;
+		this.humidity = humidity;
 	}
 
 	/**
@@ -32,14 +55,21 @@ public class Observation implements Comparable{
 	 * @param iconURLName the icon name depicting the weather
 	 */
 	public Observation(String id, String description, double temp, int windDir, double windSpeed, double pressure, int humidity, String iconURLBase, String  iconURLName) {
-
+		this.id = id;
+		this.description = description;
+		this.temp = temp;
+		this.windDir = windDir;
+		this.windSpeed = windSpeed;
+		this.pressure = pressure;
+		this.humidity = humidity;
 	}
 	
 	/**
 	 * @return a String representing this observation
 	 */
 	public String toString() {
-		return null;
+		return id+": " +temp+ " degrees; " +description+ " (wind: " +windSpeed+ " knots @ " +windDir + " degrees); barometric pressure: "
+				+ pressure +"; relativity humidity: " +humidity;
 		
 	}
 	
@@ -49,7 +79,12 @@ public class Observation implements Comparable{
 	 * @return true if this observation's temperature is colder than other; otherwise false.
 	 */
 	public boolean colderThan(Observation other) {
-		return false;
+		if(this.getTemp() < other.getTemp()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**
@@ -109,7 +144,7 @@ public class Observation implements Comparable{
 	 * @return the weather station id
 	 */
 	public String getId() {
-		return null;
+		return ;
 	}
 	/**
 	 * Gets the URL to the icon depicting the weather. 
