@@ -93,7 +93,12 @@ public class Observation implements Comparable{
 	 * For more details, see https://en.wikipedia.org/wiki/Beaufort_scale
 	 */
 	public int getBeaufortNumber() {
-		return -1;
+		if (windSpeed < 1) {
+			return  0;
+		}
+		else if (1 <= windSpeed =<3) {
+			
+		}
 	}
 	
 	   /**
@@ -108,14 +113,14 @@ public class Observation implements Comparable{
 		 * @return the wind Direction
 		 */
 		public int getWindDir() {
-			return Integer.MIN_VALUE;
+			return windDir;
 		}
 
 		/**
 		 * @return a short description of the weather
 		 */
 		public String getDescription() {
-			return null;
+			return description;
 		}
 
 		/**
