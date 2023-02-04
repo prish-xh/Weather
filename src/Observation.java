@@ -8,6 +8,8 @@ public class Observation implements Comparable{
 	private double windSpeed;
 	private double pressure;
 	private int humidity;
+	private String iconURLBase;
+	private String iconURLName;
 	
 	
 	public static void main(String[] args) {
@@ -62,6 +64,8 @@ public class Observation implements Comparable{
 		this.windSpeed = windSpeed;
 		this.pressure = pressure;
 		this.humidity = humidity;
+		this.iconURLBase = iconURLBase;
+		this.iconURLName = iconURLName;
 	}
 	
 	/**
@@ -96,8 +100,41 @@ public class Observation implements Comparable{
 		if (windSpeed < 1) {
 			return  0;
 		}
-		else if (1 <= windSpeed =<3) {
-			
+		else if (1 <= windSpeed && windSpeed <= 3) {
+			return 1;
+		}
+		else if (4 <= windSpeed && windSpeed <= 6) {
+			return 2;
+		}
+		else if (7 <= windSpeed && windSpeed <= 10) {
+			return 3;
+		}
+		else if (11 <= windSpeed && windSpeed <= 16) {
+			return 4;
+		}
+		else if (17 <= windSpeed && windSpeed <= 21) {
+			return 5;
+		}
+		else if (22 <= windSpeed && windSpeed <= 27) {
+			return 6;
+		}
+		else if (28 <= windSpeed && windSpeed <= 33) {
+			return 7;
+		}
+		else if (34 <= windSpeed && windSpeed <= 40) {
+			return 8;
+		}
+		else if (41 <= windSpeed && windSpeed <= 47) {
+			return 9;
+		}
+		else if (48 <= windSpeed && windSpeed <= 55) {
+			return 10;
+		}
+		else if (56 <= windSpeed && windSpeed <= 63) {
+			return 11;
+		}
+		else {
+			return 12;
 		}
 	}
 	
@@ -107,7 +144,18 @@ public class Observation implements Comparable{
 	    * @return a string representation of the wind conditions
 	    */
 	   public String getWindConditions() {
-		   return null;
+		   if (getBeaufortNumber() <= 2) {
+			   return "Wind is calm";
+		   }
+		   else if (getBeaufortNumber() >= 3 && getBeaufortNumber() <= 5) {
+			   return "Nice breeze today";
+		   }
+		   else if (getBeaufortNumber() >= 6 && getBeaufortNumber() <= 9) {
+			   return "Wind flags are out";
+		   }
+		   else {
+			   return "Storm is coming";
+		   }
 	   }
 		/**
 		 * @return the wind Direction
@@ -127,21 +175,21 @@ public class Observation implements Comparable{
 		 * @return the barometric pressure in mb
 		 */
 		public double getPressure() {
-			return Double.MAX_VALUE;
+			return pressure;
 		}
 
 		/**
 		 * @return the relative humidity
 		 */
 		public int getHumidity() {
-			return Integer.MIN_VALUE;
+			return humidity;
 		}
 
 		/**
 		 * @return the wind speed in knots
 		 */
 		public double getWindSpeed() {
-			return Double.MIN_VALUE;
+			return windSpeed;
 		}
 
 	/**
@@ -149,7 +197,7 @@ public class Observation implements Comparable{
 	 * @return the weather station id
 	 */
 	public String getId() {
-		return ;
+		return id;
 	}
 	/**
 	 * Gets the URL to the icon depicting the weather. 
@@ -157,7 +205,7 @@ public class Observation implements Comparable{
 	 * @return A full URL to the icon depicting the weather. 
 	 */
 	public String getIconURL() {
-		return null;
+		return iconURLName;
 	}
 
 
@@ -165,7 +213,7 @@ public class Observation implements Comparable{
 	 * @return the temp
 	 */
 	public double getTemp() {
-		return Integer.MIN_VALUE;
+		return temp;
 	}
 	/**
 	 * Compares this object with the specified object for order.
@@ -190,5 +238,6 @@ public class Observation implements Comparable{
 		}
 		return -1;
 	}
+
 
 }
