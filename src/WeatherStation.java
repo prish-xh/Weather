@@ -2,6 +2,7 @@
  Represents information about a NWS weather station
 */
 
+import core.data.*;
 public class WeatherStation implements Comparable{
    
    /**
@@ -12,7 +13,29 @@ public class WeatherStation implements Comparable{
     * @param lat latitude of this station
     * @param lng longitude of this station
     */
+	public static void main(String[] args) {
+		Activity1.avoidSSLError();
+		String id = "KSEA";
+		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/" + id + ".xml"); 
+		ds.setCacheTimeout(15);  
+		ds.load();
+		ds.printUsageString();
+
+	}
+	
+	private String name;
+	private String id;
+	private String state;
+	private double lat;
+	private double lng; 
+	
    public WeatherStation(String name, String id, String state, double lat, double lng) {
+	   this.name = name;
+	   this.id = id;
+	   this.state = state;
+	   this.lat = lat;
+	   this.lng = lng;
+	   
     }
    
   /**
@@ -20,7 +43,7 @@ public class WeatherStation implements Comparable{
    * @return the ID of the weather station
    */
    public String getId() { 
-      return null;
+      return id;
    }
    
    /**
@@ -28,7 +51,7 @@ public class WeatherStation implements Comparable{
     * @return the name of this station
     */
    public String getName() { 
-      return null;
+      return name;
    }
    
    /**
@@ -36,21 +59,21 @@ public class WeatherStation implements Comparable{
     * @returns the state in which this station is located
     */
    public String getState() {
-	   return null;
+	   return state;
    }
    /**
     * Gets latitude for this station
     * @returns the latitude for this station
     */
    public double getLatitude() {
-	   return Double.MIN_VALUE;
+	   return lat;
    }
    /**
     * Gets longitude for this station
     * @returns the longitude for this station
     */
    public double getLongitude() {
-	   return Double.MIN_VALUE;
+	   return lng;
    }
 
    /**
@@ -58,8 +81,16 @@ public class WeatherStation implements Comparable{
     * @return An Observation object representing the ata for the current weather station
     */
    public Observation getCurrentWeather() {
-	   return null;
+	   Activity1.avoidSSLError();
+	   DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/" + id + ".xml");
+	   ds.load();
+	   ds.setCacheTimeout(900);
+	   Observation obiWan = ds.fetch("Observation", "station_id", "weather", "temp_f", "wind_degrees", "wind_kt", "pressure_mb", "relative_humidity");
+	   return obiWan;
+			  
+	   
    }
+   
    
 	/**
 	 * Compares this object with the specified object for order.
