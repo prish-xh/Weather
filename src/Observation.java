@@ -205,7 +205,7 @@ public class Observation implements Comparable{
 	 * @return A full URL to the icon depicting the weather. 
 	 */
 	public String getIconURL() {
-		return iconURLName;
+		return "http://www.iconstore.com/"+ iconURLName;
 	}
 
 
