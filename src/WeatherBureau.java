@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WeatherBureau {
-	WeatherStation[] stations;
-	
 	/**
 	 * Constructor that initializes stations by connecting, loading
 	 * and fetching the weather stations serviced by the National 
@@ -24,7 +22,14 @@ public class WeatherBureau {
 	 */
 
 	public WeatherStation[] getAllStationsArray() {
-		return null;
+		Activity1.avoidSSLError();
+		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/index.xml");
+		ds.load();
+		WeatherStation[] allstns = ds.fetchArray("WeatherStation", "station/station_name", 
+	                                         "station/station_id", "station/state",
+	                                         "station/latitude", "station/longitude");
+		return allstns;
+
 	}
 	
 	/**
@@ -32,7 +37,13 @@ public class WeatherBureau {
 	 * @return he weather stations as an ArrayList
 	 */
 	public ArrayList<WeatherStation> getAllStationsList(){
-		return null;
+		Activity1.avoidSSLError();
+		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/index.xml");
+		ds.load();
+		ArrayList<WeatherStation> allstns = ds.fetchList("WeatherStation", "station/station_name", 
+		                                                 "station/station_id", "station/state",
+		                                                 "station/latitude", "station/longitude");
+		return allstns;
 	}
 	
 	/**
