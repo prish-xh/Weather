@@ -84,7 +84,7 @@ public class WeatherBureau {
 			}
 		}
 		
-		System.out.print(state);
+		
 		return state;
 		
 	}
@@ -126,8 +126,17 @@ public class WeatherBureau {
 	 */
 
 	public WeatherStation[] getStationsInStateSortedByName(String state) {
-		return null;
+		ArrayList<WeatherStation> allstns= getAllStationsList();
+		ArrayList<WeatherStation> stateStnsName = new ArrayList<WeatherStation>();
+		
+		for (int i = 0; i< allstns.size(); i++) {
+			if (state.equals(allstns.get(i).getState())){
+				stateStns.add(allstns.get(i));
+			}
+		}
+		return stateStnsName;
 	}
+	
 	/**
 	 * Sorts the array of WeatherStation using the Insertion Sort algorithm
 	 * @param arr the array of WeatherStation
