@@ -53,7 +53,14 @@ public class WeatherBureau {
 	 */
 
 	public ArrayList<WeatherStation> getStationsInState(String state){
-		return null;
+		ArrayList<WeatherStation> allstns= getAllStationsList();
+		ArrayList<WeatherStation> stateStns = new ArrayList<WeatherStation>();
+		for (int i = 0; i< allstns.size(); i++) {
+			if (state.equals(allstns.get(i).getState())){
+				stateStns.add(allstns.get(i));
+			}
+		}
+		return stateStns;
 	}
 
 	/**
@@ -62,7 +69,23 @@ public class WeatherBureau {
 	 * @return the states and provinces with NWS weather stations
 	 */
 	public ArrayList<String> getStatesWithStations(){
-		return null;
+		ArrayList<WeatherStation> allstns= getAllStationsList();
+		ArrayList<String> state = new ArrayList<String>();
+		for (int i = 0; i< allstns.size(); i++) {
+			boolean isThere = false;
+			for (int j = 0; j< state.size(); j++) {
+				if(allstns.get(i).getState().equals(state.get(j))) {
+					isThere = true;
+				}
+				
+			}
+			if (isThere == false) {
+				state.add(allstns.get(i).getState());
+			}
+		}
+		
+		System.out.print(state);
+		return state;
 		
 	}
 
@@ -86,6 +109,7 @@ public class WeatherBureau {
 		
 			// Adding a try catch, because sometimes a weather station is offline.
 			try {
+				
 				// add code to get the weather for a station
 			}catch(Exception e) {
 				System.out.println("Error retrieving observation data for station" );
