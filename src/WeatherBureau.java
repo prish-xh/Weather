@@ -109,6 +109,12 @@ public class WeatherBureau {
 		
 			// Adding a try catch, because sometimes a weather station is offline.
 			try {
+				ArrayList<WeatherStation> stns = getStationsInState(state);
+				ArrayList<WeatherStation> allstns= getAllStationsList();
+				x.getTemp();
+				for (i = 0; i < allstns.size(); i++) {
+					Observation x = stns.get(i).getCurrentWeather();
+				}
 				
 				// add code to get the weather for a station
 			}catch(Exception e) {
@@ -126,16 +132,8 @@ public class WeatherBureau {
 	 */
 
 	public WeatherStation[] getStationsInStateSortedByName(String state) {
-		ArrayList<WeatherStation> allstns= getAllStationsList();
-		ArrayList<WeatherStation> stateStnsName = new ArrayList<WeatherStation>();
-		
-		for (int i = 0; i< allstns.size(); i++) {
-			if (state.equals(allstns.get(i).getState())){
-				stateStns.add(allstns.get(i));
-			}
+		return null;
 		}
-		return stateStnsName;
-	}
 	
 	/**
 	 * Sorts the array of WeatherStation using the Insertion Sort algorithm
