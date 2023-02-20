@@ -13,6 +13,12 @@ public class WeatherBureau {
 	 * Weather Service
 	 */
 	public WeatherBureau() {
+		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/index.xml");
+		ds.load();
+		WeatherStation[] stns = ds.fetchArray("WeatherStation", "station/station_name", 
+		                                         "station/station_id", "station/state",
+		                                         "station/latitude", "station/longitude");
+
 	
 	}
 	
@@ -104,20 +110,37 @@ public class WeatherBureau {
 	 * @return An Observation for the weather station with the coldest temperature
 	 */
 	public Observation getColdestInState(String state) {
-		
-		// Traverse all weathe stations in a state
-		
+			
 			// Adding a try catch, because sometimes a weather station is offline.
 			try {
-				ArrayList<WeatherStation> stns = getStationsInState(state);
-				ArrayList<WeatherStation> allstns= getAllStationsList();
-				x.getTemp();
-				for (i = 0; i < allstns.size(); i++) {
-					Observation x = stns.get(i).getCurrentWeather();
-				}
 				
-				// add code to get the weather for a station
+				ArrayList<WeatherStation> stns = getStationsInState(state);
+				Observation display = null;
+				
+				for (int i = 0; i <stns.size()-1; i++) {
+					String id = stns.get(i).getId();
+					String id2 = stns.get(i+1).getId();
+					Activity1.avoidSSLError();
+
+					DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/" +id+ ".xml");
+					ds.load();
+					DataSource ds2 = DataSource.connect("http://weather.gov/xml/current_obs/" +id2+ ".xml");
+					ds2.load();
+					
+					Observation one = ds. fetch("Observation", "station_id", "weather", "temp_f", "wind_degrees", "wind_kt", "pressure_in", "relative_humidity");
+					Observation two = ds. fetch("Observation", "station_id", "weather", "temp_f", "wind_degrees", "wind_kt", "pressure_in", "relative_humidity");
+					
+					if (one.colderThan(two)) {
+						display = one;
+					}
+					else {
+						display = two;
+					}
+				}
+				return display;
+				
 			}catch(Exception e) {
+				System.out.println(e.getLocalizedMessage());
 				System.out.println("Error retrieving observation data for station" );
 			}
 
@@ -132,7 +155,22 @@ public class WeatherBureau {
 	 */
 
 	public WeatherStation[] getStationsInStateSortedByName(String state) {
-		return null;
+		ArrayList<WeatherStation> stateStns = getStationsInState(state);
+		WeatherStation[] display = new WeatherStation[stateStns.size()];
+		
+		for (int i = 0; i <stateStns.size() -1; i++) {
+			for (int j = 1+i; j<stateStns.size(); j++) {
+				if (stateStns.get(i).getName().compareTo(stateStns.get(j).getName()) >= 0){
+					WeatherStation temp = stateStns.get(i);
+					stateStns.set(i,  stateStns.get(j));
+					stateStns.set(j,  temp);
+				}
+			}
+		}
+		for (int i = 0; i < stateStns.size(); i++) {
+			display[i] = stateStns.get(i);
+		}
+		return display;
 		}
 	
 	/**
@@ -140,6 +178,21 @@ public class WeatherBureau {
 	 * @param arr the array of WeatherStation
 	 */
 	public void insertionSort(WeatherStation[] arr) {
+		int index = 0;
+		int sorted = 0;
+		WeatherStation newval;
+		
+		
+		for(index = 1; index <arr.length; index++) {
+			newval = arr[index];
+			sorted = index;
+			while(sorted >0 && arr[sorted -1].getName().compareTo(newval.getName()) > 0) {
+				arr[sorted] = arr[sorted -1];
+				sorted--;
+				
+			}
+			arr[sorted] = newval;
+		}
 
 	}
 	public static void main(String[] args) {
